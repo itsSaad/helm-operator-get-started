@@ -1,0 +1,19 @@
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: nginx-ingress
+  namespace: kube-system
+spec:
+  releaseName: nginx-ingress
+  timeout: 300
+  resetValues: false
+  wait: true
+  forceUpgrade: false
+  chart:
+    repository: https://kubernetes-charts.storage.googleapis.com/
+    name: nginx-ingress
+    version: 1.36.0
+  values:
+    controller:
+      ingressClass: nginx
+      kind: Deployment
